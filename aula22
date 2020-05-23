@@ -1,0 +1,72 @@
+public abstract class Veiculo {
+
+    private String modelo;
+    private String marca;
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public abstract void acelerar();
+
+}
+
+public class Carro extends Veiculo {
+
+    public boolean ligado;  
+
+    public Carro() {
+        ligado = false;
+    }
+
+    public void ligar() {
+        ligado = true;
+        System.out.println("O veículo ligou!");
+    }
+
+    public void desligar() {
+        ligado = false;
+        System.out.println("O veículo desligou!");
+    }
+
+    @Override
+    public void acelerar() {
+        if (!ligado){
+            throw new Exception("O carro não pode ser acelerado, pois ele está desligado.");
+        }
+        System.out.println("O carro foi acelerado");
+    }
+
+    public boolean estaLigado() {
+        return ligado;
+    }
+}
+
+public class Bicicleta extends Veiculo {
+
+    @Override
+    public void acelerar() {
+        System.out.println("A bicicleta acelerou!");
+    }
+}
+
+Veiculo veiculo = new Carro();
+System.out.println(veiculo.estaLigado()); 
+veiculo.modelo = "Corsa";
+veiculo.marca = "GM";
+veiculo.ligar();
+System.out.println(veiculo.estaLigado()); 
+veiculo.acelerar();
+veiculo.desligar();
